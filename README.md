@@ -1,4 +1,4 @@
-# Vishwaniketan Campus Portal
+#Campus Portal
 
 A comprehensive campus portal for Vishwaniketan Institute of Technology, providing a unified platform for students, faculty, and administrators.
 
