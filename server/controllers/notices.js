@@ -114,7 +114,7 @@ export const getNotices = async (req, res) => {
       ...notice,
       image: notice.image ? {
         ...notice.image,
-        fullUrl: `${process.env.SERVER_URL || 'http://localhost:5000'}${notice.image.path}`
+        fullUrl: `${process.env.SERVER_URL || 'http://localhost:3000'}${notice.image.path}`
       } : null
     }));
 

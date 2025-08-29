@@ -195,7 +195,7 @@ router.get("/", async (req, res) => {
       image: notice.image ? {
         ...notice.image,
         path: notice.image.path, // Keep the original path
-        fullUrl: `${process.env.SERVER_URL || 'http://localhost:5000'}${notice.image.path}`
+        fullUrl: `${process.env.SERVER_URL || 'http://localhost:3000'}${notice.image.path}`
       } : null
     }));
 

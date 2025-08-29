@@ -109,7 +109,7 @@ export const getPosts = async (req, res) => {
       ...post,
       image: post.image ? {
         ...post.image,
-        fullUrl: `${process.env.SERVER_URL || 'http://localhost:5000'}${post.image?.path}`
+        fullUrl: `${process.env.SERVER_URL || 'http://localhost:3000'}${post.image?.path}`
       } : null
     }));
 
@@ -162,7 +162,7 @@ export const getPost = async (req, res) => {
     
     // Format image URL if exists
     if (post.image && post.image.path) {
-      post.image.fullUrl = `${process.env.SERVER_URL || 'http://localhost:5000'}${post.image.path}`;
+      post.image.fullUrl = `${process.env.SERVER_URL || 'http://localhost:3000'}${post.image.path}`;
     }
     
     // Fetch ALL comments for this post, both top-level and replies

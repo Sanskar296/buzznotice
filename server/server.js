@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import connectDB from "./config/db.js";
+import { config } from "./config/environment.js";
 import User from "./models/User.js";
 import Post from "./models/Post.js"; // Add Post model import
 import FacultyRequest from "./models/FacultyRequest.js"; // Add FacultyRequest model import
@@ -41,13 +42,15 @@ const initializeDB = async () => {
 
 initializeDB();
 
-// Add this with your other models initialization
+// Add this with your other models initialization - wait for DB connection
 const models = { User, Post, FacultyRequest };
-Object.values(models).forEach(model => {
-  if (typeof model.createIndexes === 'function') {
-    model.createIndexes();
-  }
-});
+setTimeout(() => {
+  Object.values(models).forEach(model => {
+    if (typeof model.createIndexes === 'function') {
+      model.createIndexes();
+    }
+  });
+}, 1000); // Wait 1 second for DB connection to establish
 
 // Explicitly configure uploads directory
 const uploadsPath = path.join(__dirname, 'uploads');
@@ -58,11 +61,7 @@ if (!fs.existsSync(uploadsPath)) {
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: [
-    'http://localhost:3000', 
-    'http://localhost:5173', // Vite default dev port
-    process.env.CLIENT_URL
-  ].filter(Boolean),
+  origin: config.cors.origins,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization", "Accept"],
@@ -156,12 +155,12 @@ app.use((req, res) => {
 });
 
 // Server startup
-const PORT = process.env.PORT || 5000;
+const PORT = config.server.port;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV}`);
-  console.log(`API URL: ${process.env.CLIENT_URL || "http://localhost:3000"}`);
-  console.log(`Database: mongodb://127.0.0.1:27017/Vishwaniketan-campus`);
+  console.log(`Environment: ${config.server.nodeEnv}`);
+  console.log(`API URL: ${config.client.url}`);
+  console.log(`Database: MongoDB Atlas Cloud`);
 });
 
 // Handle unhandled promise rejections
