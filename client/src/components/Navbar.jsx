@@ -80,7 +80,7 @@ function Navbar() {
             </button>
             <Link to="/home" className="flex items-center space-x-2">
               <img src="../images/college_ion.png" alt="Vishwaniketan Logo" className="h-8 w-8 sm:h-10 sm:w-10 rounded-full" />
-              <span className="text-lg sm:text-xl font-bold truncate max-w-[150px] sm:max-w-none">Vishwaniketan Campus</span>
+              <span className="text-lg sm:text-xl font-bold truncate max-w-[150px] sm:max-w-none">Campus Connect</span>
             </Link>
           </div>
 
