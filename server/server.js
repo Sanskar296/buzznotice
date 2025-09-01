@@ -61,7 +61,7 @@ if (!fs.existsSync(uploadsPath)) {
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: config.cors.origins,
+  origin: "https://buzznotice-1.onrender.com",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization", "Accept"],
